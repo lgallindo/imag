@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `StoreErrorKind` enum in crate `libimagstore`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, StoreErrorKind">
+
+    <title>libimagstore::error::StoreErrorKind - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>libimagstore</a>::<wbr><a href='index.html'>error</a></p><script>window.sidebarCurrent = {name: 'StoreErrorKind', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>libimagstore</a>::<wbr><a href='index.html'>error</a>::<wbr><a class='enum' href=''>StoreErrorKind</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span></span></h1>
+<pre class='rust enum'>pub enum StoreErrorKind {
+    ConfigurationError,
+    ConfigTypeError,
+    ConfigKeyMissingError,
+    ConfigKeyUnloadAspectsError,
+    ConfigKeyPreCreateAspectsError,
+    ConfigKeyPostCreateAspectsError,
+    ConfigKeyPreRetrieveAspectsError,
+    ConfigKeyPostRetrieveAspectsError,
+    ConfigKeyPreUpdateAspectsError,
+    ConfigKeyPostUpdateAspectsError,
+    ConfigKeyPreDeleteAspectsError,
+    ConfigKeyPostDeleteAspectsError,
+    CreateStoreDirDenied,
+    FileError,
+    IoError,
+    IdLocked,
+    IdNotFound,
+    OutOfMemory,
+    FileNotFound,
+    FileNotCreated,
+    FileNotWritten,
+    FileNotSeeked,
+    FileNotRemoved,
+    FileNotRenamed,
+    FileNotCopied,
+    DirNotCreated,
+    StorePathExists,
+    StorePathCreate,
+    LockError,
+    LockPoisoned,
+    EntryAlreadyBorrowed,
+    EntryAlreadyExists,
+    MalformedEntry,
+    HeaderPathSyntaxError,
+    HeaderPathTypeFailure,
+    HeaderKeyNotFound,
+    HeaderTypeFailure,
+    HookRegisterError,
+    AspectNameNotFoundError,
+    HookExecutionError,
+    PreHookExecuteError,
+    PostHookExecuteError,
+    StorePathLacksVersion,
+    GlobError,
+    EncodingError,
+    StorePathError,
+    EntryRenameError,
+    StoreIdHandlingError,
+    StoreIdLocalPartAbsoluteError,
+    StoreIdBuildFromFullPathError,
+    StoreIdHasNoBaseError,
+    CreateCallError,
+    RetrieveCallError,
+    GetCallError,
+    GetAllVersionsCallError,
+    RetrieveForModuleCallError,
+    UpdateCallError,
+    RetrieveCopyCallError,
+    DeleteCallError,
+    MoveCallError,
+    MoveByIdCallError,
+}</pre><h2 class='variants'>Variants</h2>
+<span id='variant.ConfigurationError' class='variant'><span id='ConfigurationError.v' class='invisible'><code>ConfigurationError</code></span></span><span id='variant.ConfigTypeError' class='variant'><span id='ConfigTypeError.v' class='invisible'><code>ConfigTypeError</code></span></span><span id='variant.ConfigKeyMissingError' class='variant'><span id='ConfigKeyMissingError.v' class='invisible'><code>ConfigKeyMissingError</code></span></span><span id='variant.ConfigKeyUnloadAspectsError' class='variant'><span id='ConfigKeyUnloadAspectsError.v' class='invisible'><code>ConfigKeyUnloadAspectsError</code></span></span><span id='variant.ConfigKeyPreCreateAspectsError' class='variant'><span id='ConfigKeyPreCreateAspectsError.v' class='invisible'><code>ConfigKeyPreCreateAspectsError</code></span></span><span id='variant.ConfigKeyPostCreateAspectsError' class='variant'><span id='ConfigKeyPostCreateAspectsError.v' class='invisible'><code>ConfigKeyPostCreateAspectsError</code></span></span><span id='variant.ConfigKeyPreRetrieveAspectsError' class='variant'><span id='ConfigKeyPreRetrieveAspectsError.v' class='invisible'><code>ConfigKeyPreRetrieveAspectsError</code></span></span><span id='variant.ConfigKeyPostRetrieveAspectsError' class='variant'><span id='ConfigKeyPostRetrieveAspectsError.v' class='invisible'><code>ConfigKeyPostRetrieveAspectsError</code></span></span><span id='variant.ConfigKeyPreUpdateAspectsError' class='variant'><span id='ConfigKeyPreUpdateAspectsError.v' class='invisible'><code>ConfigKeyPreUpdateAspectsError</code></span></span><span id='variant.ConfigKeyPostUpdateAspectsError' class='variant'><span id='ConfigKeyPostUpdateAspectsError.v' class='invisible'><code>ConfigKeyPostUpdateAspectsError</code></span></span><span id='variant.ConfigKeyPreDeleteAspectsError' class='variant'><span id='ConfigKeyPreDeleteAspectsError.v' class='invisible'><code>ConfigKeyPreDeleteAspectsError</code></span></span><span id='variant.ConfigKeyPostDeleteAspectsError' class='variant'><span id='ConfigKeyPostDeleteAspectsError.v' class='invisible'><code>ConfigKeyPostDeleteAspectsError</code></span></span><span id='variant.CreateStoreDirDenied' class='variant'><span id='CreateStoreDirDenied.v' class='invisible'><code>CreateStoreDirDenied</code></span></span><span id='variant.FileError' class='variant'><span id='FileError.v' class='invisible'><code>FileError</code></span></span><span id='variant.IoError' class='variant'><span id='IoError.v' class='invisible'><code>IoError</code></span></span><span id='variant.IdLocked' class='variant'><span id='IdLocked.v' class='invisible'><code>IdLocked</code></span></span><span id='variant.IdNotFound' class='variant'><span id='IdNotFound.v' class='invisible'><code>IdNotFound</code></span></span><span id='variant.OutOfMemory' class='variant'><span id='OutOfMemory.v' class='invisible'><code>OutOfMemory</code></span></span><span id='variant.FileNotFound' class='variant'><span id='FileNotFound.v' class='invisible'><code>FileNotFound</code></span></span><span id='variant.FileNotCreated' class='variant'><span id='FileNotCreated.v' class='invisible'><code>FileNotCreated</code></span></span><span id='variant.FileNotWritten' class='variant'><span id='FileNotWritten.v' class='invisible'><code>FileNotWritten</code></span></span><span id='variant.FileNotSeeked' class='variant'><span id='FileNotSeeked.v' class='invisible'><code>FileNotSeeked</code></span></span><span id='variant.FileNotRemoved' class='variant'><span id='FileNotRemoved.v' class='invisible'><code>FileNotRemoved</code></span></span><span id='variant.FileNotRenamed' class='variant'><span id='FileNotRenamed.v' class='invisible'><code>FileNotRenamed</code></span></span><span id='variant.FileNotCopied' class='variant'><span id='FileNotCopied.v' class='invisible'><code>FileNotCopied</code></span></span><span id='variant.DirNotCreated' class='variant'><span id='DirNotCreated.v' class='invisible'><code>DirNotCreated</code></span></span><span id='variant.StorePathExists' class='variant'><span id='StorePathExists.v' class='invisible'><code>StorePathExists</code></span></span><span id='variant.StorePathCreate' class='variant'><span id='StorePathCreate.v' class='invisible'><code>StorePathCreate</code></span></span><span id='variant.LockError' class='variant'><span id='LockError.v' class='invisible'><code>LockError</code></span></span><span id='variant.LockPoisoned' class='variant'><span id='LockPoisoned.v' class='invisible'><code>LockPoisoned</code></span></span><span id='variant.EntryAlreadyBorrowed' class='variant'><span id='EntryAlreadyBorrowed.v' class='invisible'><code>EntryAlreadyBorrowed</code></span></span><span id='variant.EntryAlreadyExists' class='variant'><span id='EntryAlreadyExists.v' class='invisible'><code>EntryAlreadyExists</code></span></span><span id='variant.MalformedEntry' class='variant'><span id='MalformedEntry.v' class='invisible'><code>MalformedEntry</code></span></span><span id='variant.HeaderPathSyntaxError' class='variant'><span id='HeaderPathSyntaxError.v' class='invisible'><code>HeaderPathSyntaxError</code></span></span><span id='variant.HeaderPathTypeFailure' class='variant'><span id='HeaderPathTypeFailure.v' class='invisible'><code>HeaderPathTypeFailure</code></span></span><span id='variant.HeaderKeyNotFound' class='variant'><span id='HeaderKeyNotFound.v' class='invisible'><code>HeaderKeyNotFound</code></span></span><span id='variant.HeaderTypeFailure' class='variant'><span id='HeaderTypeFailure.v' class='invisible'><code>HeaderTypeFailure</code></span></span><span id='variant.HookRegisterError' class='variant'><span id='HookRegisterError.v' class='invisible'><code>HookRegisterError</code></span></span><span id='variant.AspectNameNotFoundError' class='variant'><span id='AspectNameNotFoundError.v' class='invisible'><code>AspectNameNotFoundError</code></span></span><span id='variant.HookExecutionError' class='variant'><span id='HookExecutionError.v' class='invisible'><code>HookExecutionError</code></span></span><span id='variant.PreHookExecuteError' class='variant'><span id='PreHookExecuteError.v' class='invisible'><code>PreHookExecuteError</code></span></span><span id='variant.PostHookExecuteError' class='variant'><span id='PostHookExecuteError.v' class='invisible'><code>PostHookExecuteError</code></span></span><span id='variant.StorePathLacksVersion' class='variant'><span id='StorePathLacksVersion.v' class='invisible'><code>StorePathLacksVersion</code></span></span><span id='variant.GlobError' class='variant'><span id='GlobError.v' class='invisible'><code>GlobError</code></span></span><span id='variant.EncodingError' class='variant'><span id='EncodingError.v' class='invisible'><code>EncodingError</code></span></span><span id='variant.StorePathError' class='variant'><span id='StorePathError.v' class='invisible'><code>StorePathError</code></span></span><span id='variant.EntryRenameError' class='variant'><span id='EntryRenameError.v' class='invisible'><code>EntryRenameError</code></span></span><span id='variant.StoreIdHandlingError' class='variant'><span id='StoreIdHandlingError.v' class='invisible'><code>StoreIdHandlingError</code></span></span><span id='variant.StoreIdLocalPartAbsoluteError' class='variant'><span id='StoreIdLocalPartAbsoluteError.v' class='invisible'><code>StoreIdLocalPartAbsoluteError</code></span></span><span id='variant.StoreIdBuildFromFullPathError' class='variant'><span id='StoreIdBuildFromFullPathError.v' class='invisible'><code>StoreIdBuildFromFullPathError</code></span></span><span id='variant.StoreIdHasNoBaseError' class='variant'><span id='StoreIdHasNoBaseError.v' class='invisible'><code>StoreIdHasNoBaseError</code></span></span><span id='variant.CreateCallError' class='variant'><span id='CreateCallError.v' class='invisible'><code>CreateCallError</code></span></span><span id='variant.RetrieveCallError' class='variant'><span id='RetrieveCallError.v' class='invisible'><code>RetrieveCallError</code></span></span><span id='variant.GetCallError' class='variant'><span id='GetCallError.v' class='invisible'><code>GetCallError</code></span></span><span id='variant.GetAllVersionsCallError' class='variant'><span id='GetAllVersionsCallError.v' class='invisible'><code>GetAllVersionsCallError</code></span></span><span id='variant.RetrieveForModuleCallError' class='variant'><span id='RetrieveForModuleCallError.v' class='invisible'><code>RetrieveForModuleCallError</code></span></span><span id='variant.UpdateCallError' class='variant'><span id='UpdateCallError.v' class='invisible'><code>UpdateCallError</code></span></span><span id='variant.RetrieveCopyCallError' class='variant'><span id='RetrieveCopyCallError.v' class='invisible'><code>RetrieveCopyCallError</code></span></span><span id='variant.DeleteCallError' class='variant'><span id='DeleteCallError.v' class='invisible'><code>DeleteCallError</code></span></span><span id='variant.MoveCallError' class='variant'><span id='MoveCallError.v' class='invisible'><code>MoveCallError</code></span></span><span id='variant.MoveByIdCallError' class='variant'><span id='MoveByIdCallError.v' class='invisible'><code>MoveByIdCallError</code></span></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>FmtError</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='../../libimagerror/into/trait.IntoError.html' title='libimagerror::into::IntoError'>IntoError</a> for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Target' class='type'><span id='Target.t' class='invisible'><code>type <a href='../../libimagerror/into/trait.IntoError.html#associatedtype.Target' class='type'>Target</a> = <a class='struct' href='../../libimagstore/error/struct.StoreError.html' title='libimagstore::error::StoreError'>StoreError</a></code></span></h4>
+<h4 id='method.into_error' class='method'><span id='into_error.v' class='invisible'><code>fn <a href='../../libimagerror/into/trait.IntoError.html#tymethod.into_error' class='fnname'>into_error</a>(self) -&gt; Self::Target</code></span></h4>
+<div class='docblock'><p>Convert the type into an error with no cause</p>
+</div><h4 id='method.into_error_with_cause' class='method'><span id='into_error_with_cause.v' class='invisible'><code>fn <a href='../../libimagerror/into/trait.IntoError.html#tymethod.into_error_with_cause' class='fnname'>into_error_with_cause</a>(self, cause: <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a>&gt;) -&gt; Self::Target</code></span></h4>
+<div class='docblock'><p>Convert the type into an error with cause</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html' title='core::convert::Into'>Into</a>&lt;<a class='struct' href='../../libimagstore/error/struct.StoreError.html' title='libimagstore::error::StoreError'>StoreError</a>&gt; for <a class='enum' href='../../libimagstore/error/enum.StoreErrorKind.html' title='libimagstore::error::StoreErrorKind'>StoreErrorKind</a></code></span><span class='out-of-band'></span></h3>
+<div class='impl-items'><h4 id='method.into' class='method'><span id='into.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into' class='fnname'>into</a>(self) -&gt; <a class='struct' href='../../libimagstore/error/struct.StoreError.html' title='libimagstore::error::StoreError'>StoreError</a></code></span></h4>
+<div class='docblock'><p>Performs the conversion.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "libimagstore";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
