@@ -13,6 +13,7 @@ members = [
     "bin/core/imag-store",
     "bin/core/imag-tag",
     "bin/core/imag-view",
+    "bin/core/imag-wiki",
     "bin/domain/imag-bookmark",
     "bin/domain/imag-contact",
     "bin/domain/imag-diary",
