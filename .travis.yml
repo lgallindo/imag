@@ -5,19 +5,28 @@ os:
 dist:
   - trusty
 
-language: rust
-
-rust:
-  - 1.21.0
-  - 1.22.1
-  - 1.23.0
-  - stable
-  - beta
-  - nightly
-
 matrix:
-  allow_failures:
-    - rust: nightly
+  include:
+    - language: nix
+      before_script:
+        - nix-env -i cargo
+        - cargo install carnix
+        - carnix --standalone --src . --output build.nix Cargo.lock
+      script:
+        - nix-build ./build.nix -A imag_0_6_0
+    - language: rust
+      rust:
+        - 1.21.0
+        - 1.22.1
+        - 1.23.0
+        - stable
+        - beta
+        - nightly
+      allow_failures:
+        - rust: nightly
+      script:
+        - cargo build --all --all-features --verbose -j 1
+        - cargo test --all --all-features --verbose -j 1
 
 cache:
   cargo: true
@@ -27,10 +36,6 @@ addons:
     packages:
     - libdbus-1-dev
     - pkg-config
-
-script:
-  - cargo build --all --all-features --verbose -j 1
-  - cargo test  --all --all-features --verbose -j 1
 
 notifications:
   email:
