@@ -44,6 +44,14 @@ matrix:
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
+    - language: rust
+      rust:
+        - nightly
+      allowed_failure:
+        - nightly
+      script:
+        - cargo build --all --all-features --verbose -j 1
+        - cargo test --all --all-features --verbose -j 1
 
 cache:
   cargo: true
