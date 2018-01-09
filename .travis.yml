@@ -17,13 +17,30 @@ matrix:
     - language: rust
       rust:
         - 1.21.0
+      script:
+        - cargo build --all --all-features --verbose -j 1
+        - cargo test --all --all-features --verbose -j 1
+    - language: rust
+      rust:
         - 1.22.1
+      script:
+        - cargo build --all --all-features --verbose -j 1
+        - cargo test --all --all-features --verbose -j 1
+    - language: rust
+      rust:
         - 1.23.0
+      script:
+        - cargo build --all --all-features --verbose -j 1
+        - cargo test --all --all-features --verbose -j 1
+    - language: rust
+      rust:
         - stable
+      script:
+        - cargo build --all --all-features --verbose -j 1
+        - cargo test --all --all-features --verbose -j 1
+    - language: rust
+      rust:
         - beta
-        - nightly
-      allow_failures:
-        - rust: nightly
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
