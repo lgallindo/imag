@@ -15,40 +15,33 @@ matrix:
       script:
         - nix-build ./build.nix -A imag_0_6_0
     - language: rust
-      rust:
-        - 1.21.0
+      rust: 1.21.0
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
     - language: rust
-      rust:
-        - 1.22.1
+      rust: 1.22.1
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
     - language: rust
-      rust:
-        - 1.23.0
+      rust: 1.23.0
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
     - language: rust
-      rust:
-        - stable
+      rust: stable
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
     - language: rust
-      rust:
-        - beta
+      rust: beta
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
     - language: rust
-      rust:
-        - nightly
-      allowed_failure:
-        - nightly
+      rust: nightly
+      allowed_failure: nightly
       script:
         - cargo build --all --all-features --verbose -j 1
         - cargo test --all --all-features --verbose -j 1
