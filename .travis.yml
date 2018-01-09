@@ -9,8 +9,8 @@ matrix:
   include:
     - language: nix
       before_script:
-        - nix-env -i cargo
-        - cargo install carnix
+        - nix-env -i carnix cargo
+        - cargo build --all
         - carnix --standalone --src . --output build.nix Cargo.lock
       script:
         - nix-build ./build.nix -A imag_0_6_0
