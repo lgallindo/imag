@@ -13,10 +13,10 @@ maximum.
 - [ ] imag-bibliography - For handling bibliographic references when writing
       scientific papers. Like Citavi, for example.
 - [ ] imag-borrow - If you lend something to someone.
-- [ ] imag-cuecards - Cuecards for learning things, for example vocabulary.
 - [ ] imag-filter - command to read the store from stdin, filter out entries
       based on a predicate specified via the CLI and write the store back todo
       stdout.
+- [ ] imag-flashcards - Flashcards for learning things, for example vocabulary.
 - [ ] imag-image - Image referencing, categorizing, etc.
 - [ ] imag-item - Creating entries for Items in the store
 - [ ] imag-ledger - Ledger functionality like beancountcand others
