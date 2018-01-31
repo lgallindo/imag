@@ -48,3 +48,25 @@ pub trait CardGroup {
 
 }
 
+pub struct CardGroupIds(StoreIdIterator);
+
+impl From<StoreIdIterator> for CardGroupIds {
+    fn from(i: StoreIdIterator) -> Self {
+        CardGroupIds(i)
+    }
+}
+
+impl Iterator for CardGroupIds {
+    type Item = StoreId;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        while let Some(next) = self.0.next() {
+            if next.is_in_collection(&["flashcard", "group"]) {
+                return Some(next);
+            }
+        }
+
+        None
+    }
+}
+
