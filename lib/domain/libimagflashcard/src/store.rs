@@ -34,3 +34,21 @@ pub trait CardStore<'a> {
     fn all_groups(&self)                          -> Result<CardGroupIds>;
 }
 
+impl<'a> CardStore<'a> for Store {
+
+    fn new_group(&'a self, name: &String) -> Result<FileLockEntry<'a>> {
+        let id = ::module_path::ModuleEntryPath::new(PathBuf::from(name)).into_storeid()?;
+        self.create(id).map_err(From::from)
+    }
+
+    fn get_group_by_name(&'a self, name: &String) -> Result<Option<FileLockEntry<'a>>> {
+        let id = ::module_path::ModuleEntryPath::new(PathBuf::from(name)).into_storeid()?;
+        self.get(id).map_err(From::from)
+    }
+
+    fn all_groups(&self) -> Result<CardGroupIds> {
+        self.entries().map(CardGroupIds::from).map_err(From::from)
+    }
+
+}
+
