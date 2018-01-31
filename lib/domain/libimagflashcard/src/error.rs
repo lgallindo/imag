@@ -33,6 +33,15 @@ error_chain! {
     }
 
     errors {
+        HeaderTypeError(expected: &'static str) {
+            description("Header field type error")
+                display("Header field type error, expected '{}'", expected)
+        }
+
+        HeaderFieldMissing(name: &'static str) {
+            description("Header field missing")
+                display("Header field missing: '{}'", name)
+        }
     }
 }
 
