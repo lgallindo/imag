@@ -19,6 +19,10 @@
 
 use libimagstore::storeid::StoreId;
 use libimagstore::storeid::StoreIdIterator;
+use libimagentryutil::isa::Is;
+use libimagentryutil::isa::IsKindHeaderPathProvider;
+
+provide_kindflag_path!(pub IsCard, "flashcard.is_card");
 
 use error::Result;
 
