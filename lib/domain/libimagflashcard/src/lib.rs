@@ -27,6 +27,7 @@ extern crate toml;
 extern crate libimagerror;
 extern crate libimagentrylink;
 #[macro_use] extern crate libimagentryutil;
+extern crate libimagutil;
 
 module_entry_path_mod!("flashcard");
 

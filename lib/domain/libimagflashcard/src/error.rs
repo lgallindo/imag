@@ -30,6 +30,7 @@ error_chain! {
 
     foreign_links {
         TomlQueryError(::toml_query::error::Error);
+        ChronoError(::chrono::format::ParseError);
     }
 
     errors {
