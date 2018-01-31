@@ -17,6 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+use libimagstore::storeid::StoreId;
 use libimagstore::storeid::StoreIdIterator;
 
 use error::Result;
@@ -30,5 +31,25 @@ pub trait Card {
 
 }
 
-pub type CardIterator = StoreIdIterator;
+pub struct CardIds(Box<Iterator<Item = StoreId>>);
+
+impl CardIds {
+    pub fn new(i: Box<Iterator<Item = StoreId>>) -> Self {
+        CardIds(i)
+    }
+}
+
+impl Iterator for CardIds {
+    type Item = StoreId;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        while let Some(next) = self.0.next() {
+            if next.is_in_collection(&["flashcard", "card"]) {
+                return Some(next);
+            }
+        }
+
+        None
+    }
+}
 
