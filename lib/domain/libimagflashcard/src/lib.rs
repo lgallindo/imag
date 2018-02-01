@@ -19,6 +19,7 @@
 
 #[macro_use] extern crate error_chain;
 #[macro_use] extern crate is_match;
+extern crate filters;
 extern crate toml_query;
 extern crate chrono;
 extern crate toml;

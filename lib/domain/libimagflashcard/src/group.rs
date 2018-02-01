@@ -54,6 +54,8 @@ pub trait CardGroup {
 
     fn make_session<'a>(&mut self, store: &'a Store) -> Result<FileLockEntry<'a>>;
 
+    fn sessions<'a>(&mut self, store: &'a Store) -> Result<SessionIds>;
+
     // TODO: Some stat-functions for the group
     // like percent learned
     // no of cards
@@ -112,7 +114,7 @@ impl CardGroup for Entry {
 
         let gname   = self.group_name()?;
         let now     = ::chrono::offset::Local::now().naive_local();
-        let id      = format!("session/{}", datetime_to_string(&now));
+        let id      = format!("session/{}/{}", &gname, datetime_to_string(&now));
         let id      = ModuleEntryPath::new(id).into_storeid()?;
         let mut fle = store.create(id)?;
         let _ = fle.set_isflag::<IsSession>()?;
@@ -120,6 +122,25 @@ impl CardGroup for Entry {
         let _ = fle.get_header_mut().insert("flashcard.group.name", Value::String(gname))?;
         let _ = self.add_internal_link(&mut fle)?;
         Ok(fle)
+    }
+
+    fn sessions<'a>(&mut self, store: &'a Store) -> Result<SessionIds> {
+        use libimagentryutil::isincollection::IsInCollection;
+        use filters::filter::Filter;
+
+        struct IsInGroup(Vec<String>);
+        impl Filter<StoreId> for IsInGroup {
+            fn filter(&self, id: &StoreId) -> bool {
+                id.is_in_collection(&self.0)
+            }
+        }
+
+        let gname = self.group_name()?;
+        let f     = IsInGroup(vec!["flashcard".into(), "session".into(), gname]);
+
+        let iter = store.entries()?.filter(move |e| f.filter(&e));
+        let iter = StoreIdIterator::new(Box::new(iter));
+        Ok(SessionIds::from(iter))
     }
 
 }
