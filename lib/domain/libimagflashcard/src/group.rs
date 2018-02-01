@@ -27,6 +27,7 @@ use libimagstore::storeid::StoreId;
 use libimagstore::storeid::StoreIdIterator;
 use libimagentryutil::isa::Is;
 use libimagentryutil::isa::IsKindHeaderPathProvider;
+use libimagentrylink::internal::InternalLinker;
 
 use toml::Value;
 use toml_query::read::TomlValueReadExt;
@@ -46,12 +47,12 @@ pub trait CardGroup {
     fn is_cardgroup(&self) -> Result<bool>;
     fn group_name(&self) -> Result<String>;
 
-    fn create_card<'a>(&self, store: &'a Store, question: String, answers: Vec<String>)
+    fn create_card<'a>(&mut self, store: &'a Store, question: String, answers: Vec<String>)
         -> Result<FileLockEntry<'a>>;
 
     fn get_cards<'a>(&self, store: &'a Store) -> Result<CardIds>;
 
-    fn make_session<'a>(&self, store: &'a Store) -> Result<FileLockEntry<'a>>;
+    fn make_session<'a>(&mut self, store: &'a Store) -> Result<FileLockEntry<'a>>;
 
     // TODO: Some stat-functions for the group
     // like percent learned
@@ -74,7 +75,7 @@ impl CardGroup for Entry {
         }.map_err(Into::into)
     }
 
-    fn create_card<'a>(&self, store: &'a Store, question: String, answers: Vec<String>)
+    fn create_card<'a>(&mut self, store: &'a Store, question: String, answers: Vec<String>)
         -> Result<FileLockEntry<'a>>
     {
         let name     = format!("{}/{}", self.group_name()?, &question);
@@ -90,6 +91,7 @@ impl CardGroup for Entry {
             let _ = hdr.insert("flashcard.card.answers", Value::Array(answers))?;
         }
 
+        let _ = self.add_internal_link(&mut card)?;
         Ok(card)
     }
 
@@ -102,7 +104,7 @@ impl CardGroup for Entry {
         Ok(CardIds::new(Box::new(iter)))
     }
 
-    fn make_session<'a>(&self, store: &'a Store) -> Result<FileLockEntry<'a>> {
+    fn make_session<'a>(&mut self, store: &'a Store) -> Result<FileLockEntry<'a>> {
         use session::Session;
         use session::IsSession;
         use libimagutil::date::datetime_to_string;
@@ -116,6 +118,7 @@ impl CardGroup for Entry {
         let _ = fle.set_isflag::<IsSession>()?;
         let _ = fle.start()?;
         let _ = fle.get_header_mut().insert("flashcard.group.name", Value::String(gname))?;
+        let _ = self.add_internal_link(&mut fle)?;
         Ok(fle)
     }
 
