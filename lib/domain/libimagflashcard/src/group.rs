@@ -105,7 +105,20 @@ impl CardGroup for Entry {
     }
 
     fn make_session<'a>(&self, store: &'a Store) -> Result<FileLockEntry<'a>> {
-        unimplemented!()
+        use session::Session;
+        use session::IsSession;
+        use libimagutil::date::datetime_to_string;
+        use module_path::ModuleEntryPath;
+
+        let gname   = self.group_name()?;
+        let now     = ::chrono::offset::Local::now().naive_local();
+        let id      = format!("session/{}", datetime_to_string(&now));
+        let id      = ModuleEntryPath::new(id).into_storeid()?;
+        let mut fle = store.create(id)?;
+        let _ = fle.set_isflag::<IsSession>()?;
+        let _ = fle.start()?;
+        let _ = fle.get_header_mut().insert("flashcard.group.name", Value::String(gname))?;
+        Ok(fle)
     }
 
     fn all_sessions<'a>(&self, store: &'a Store) -> Result<SessionIds> {
