@@ -53,8 +53,6 @@ pub trait CardGroup {
 
     fn make_session<'a>(&self, store: &'a Store) -> Result<FileLockEntry<'a>>;
 
-    fn all_sessions<'a>(&self, store: &'a Store) -> Result<SessionIds>;
-
     // TODO: Some stat-functions for the group
     // like percent learned
     // no of cards
@@ -119,10 +117,6 @@ impl CardGroup for Entry {
         let _ = fle.start()?;
         let _ = fle.get_header_mut().insert("flashcard.group.name", Value::String(gname))?;
         Ok(fle)
-    }
-
-    fn all_sessions<'a>(&self, store: &'a Store) -> Result<SessionIds> {
-        unimplemented!()
     }
 
 }

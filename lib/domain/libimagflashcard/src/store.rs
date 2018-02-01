@@ -26,12 +26,14 @@ use libimagstore::storeid::IntoStoreId;
 
 use group::CardGroup;
 use group::CardGroupIds;
+use session::SessionIds;
 use error::Result;
 
 pub trait CardStore<'a> {
     fn new_group(&'a self, name: &String)         -> Result<FileLockEntry<'a>>;
     fn get_group_by_name(&'a self, name: &String) -> Result<Option<FileLockEntry<'a>>>;
     fn all_groups(&self)                          -> Result<CardGroupIds>;
+    fn all_sessions(&self)                        -> Result<SessionIds>;
 }
 
 impl<'a> CardStore<'a> for Store {
@@ -48,6 +50,10 @@ impl<'a> CardStore<'a> for Store {
 
     fn all_groups(&self) -> Result<CardGroupIds> {
         self.entries().map(CardGroupIds::from).map_err(From::from)
+    }
+
+    fn all_sessions(&self) -> Result<SessionIds> {
+        self.entries().map(SessionIds::from).map_err(From::from)
     }
 
 }
