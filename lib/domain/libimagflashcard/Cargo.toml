@@ -1,6 +1,6 @@
 [package]
 name = "libimagflashcard"
-version = "0.6.0"
+version = "0.7.0"
 authors = ["Matthias Beyer <mail@beyermatthias.de>"]
 
 description = "Library for the imag core distribution"
@@ -21,10 +21,10 @@ is-match = "0.1"
 error-chain = "0.11"
 filters = "0.2"
 
-libimagstore     = { version = "0.6.0", path = "../../../lib/core/libimagstore" }
-libimagerror     = { version = "0.6.0", path = "../../../lib/core/libimagerror" }
-libimagentryedit = { version = "0.6.0", path = "../../../lib/entry/libimagentryedit" }
-libimagentrylink = { version = "0.6.0", path = "../../../lib/entry/libimagentrylink" }
-libimagentryutil = { version = "0.6.0", path = "../../../lib/entry/libimagentryutil" }
-libimagutil      = { version = "0.6.0", path = "../../../lib/etc/libimagutil" }
+libimagstore     = { version = "0.7.0", path = "../../../lib/core/libimagstore" }
+libimagerror     = { version = "0.7.0", path = "../../../lib/core/libimagerror" }
+libimagentryedit = { version = "0.7.0", path = "../../../lib/entry/libimagentryedit" }
+libimagentrylink = { version = "0.7.0", path = "../../../lib/entry/libimagentrylink" }
+libimagentryutil = { version = "0.7.0", path = "../../../lib/entry/libimagentryutil" }
+libimagutil      = { version = "0.7.0", path = "../../../lib/etc/libimagutil" }
 
