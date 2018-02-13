@@ -17,6 +17,9 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+use std::path::Path;
+use std::result::Result as RResult;
+
 use error::MarkdownError as ME;
 use error::MarkdownErrorKind as MEK;
 use error::*;
@@ -25,7 +28,7 @@ use link::extract_links;
 use libimagentrylink::external::ExternalLinker;
 use libimagentrylink::internal::InternalLinker;
 use libimagentryref::refstore::RefStore;
-use libimagentryref::flags::RefFlags;
+use libimagentryref::refstore::UniqueRefPathGenerator;
 use libimagstore::store::Entry;
 use libimagstore::store::Store;
 use libimagstore::storeid::StoreId;
@@ -33,6 +36,17 @@ use libimagstore::storeid::StoreId;
 use std::path::PathBuf;
 
 use url::Url;
+
+struct UniqueMarkdownRefGenerator;
+impl UniqueRefPathGenerator for UniqueMarkdownRefGenerator {
+    type Error = ME;
+
+    /// A function which should generate a unique string for a Path
+    fn unique_hash<A: AsRef<Path>>(path: A) -> RResult<String, Self::Error> {
+        unimplemented!()
+    }
+
+}
 
 /// A link Processor which collects the links from a Markdown and passes them on to
 /// `libimagentrylink` functionality
@@ -136,15 +150,12 @@ impl LinkProcessor {
                         continue
                     }
 
-                    let flags = RefFlags::default()
-                        .with_content_hashing(false)
-                        .with_permission_tracking(false);
                     trace!("URL            = {:?}", url);
                     trace!("URL.path()     = {:?}", url.path());
                     trace!("URL.host_str() = {:?}", url.host_str());
                     let path = url.host_str().unwrap_or_else(|| url.path());
                     let path = PathBuf::from(path);
-                    let mut target = RefStore::create(store, path, flags)?;
+                    let mut target = store.create_ref::<UniqueMarkdownRefGenerator, PathBuf>(path)?;
 
                     entry.add_internal_link(&mut target)?;
                 },
