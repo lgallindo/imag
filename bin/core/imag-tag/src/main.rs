@@ -58,7 +58,7 @@ mod ui;
 use ui::build_ui;
 
 fn main() {
-    let rt = generate_runtime_setup("imag-store",
+    let rt = generate_runtime_setup("imag-tag",
                                     env!("CARGO_PKG_VERSION"),
                                     "Direct interface to the store. Use with great care!",
                                     build_ui);
