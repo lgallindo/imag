@@ -17,7 +17,9 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
+use std::path::Path;
 use std::path::PathBuf;
+use std::result::Result as RResult;
 
 use vobject::parse_component;
 
@@ -25,14 +27,31 @@ use libimagstore::store::Store;
 use libimagstore::store::FileLockEntry;
 use libimagstore::storeid::StoreIdIterator;
 use libimagentryref::refstore::RefStore;
-use libimagentryref::flags::RefFlags;
+use libimagentryref::refstore::UniqueRefPathGenerator;
 use libimagentryutil::isa::Is;
 
 use contact::IsContact;
+use error::ContactError as CE;
 use error::Result;
 use util;
 
-pub trait ContactStore<'a> : RefStore {
+struct UniqueContactPathGenerator;
+impl UniqueRefPathGenerator for UniqueContactPathGenerator {
+    type Error = CE;
+
+    /// The collection the `StoreId` should be created for
+    fn collection() -> &'static str {
+        "contact"
+    }
+
+    /// A function which should generate a unique string for a Path
+    fn unique_hash<A: AsRef<Path>>(path: A) -> RResult<String, Self::Error> {
+        unimplemented!()
+    }
+
+}
+
+pub trait ContactStore<'a> : RefStore<'a> {
 
     // creating
 
@@ -42,7 +61,7 @@ pub trait ContactStore<'a> : RefStore {
     ///
     /// Needs the `p` argument as we're finally creating a reference by path, the buffer is only for
     /// collecting metadata.
-    fn create_from_buf(&'a self, p: &PathBuf, buf: &String) -> Result<FileLockEntry<'a>>;
+    fn create_from_buf<P: AsRef<Path>>(&'a self, p: P, buf: &String) -> Result<FileLockEntry<'a>>;
 
     // getting
 
@@ -63,12 +82,11 @@ impl<'a> ContactStore<'a> for Store {
     }
 
     /// Create contact ref from buffer
-    fn create_from_buf(&'a self, p: &PathBuf, buf: &String) -> Result<FileLockEntry<'a>> {
+    fn create_from_buf<P: AsRef<Path>>(&'a self, p: P, buf: &String) -> Result<FileLockEntry<'a>> {
         let component = parse_component(&buf)?;
         debug!("Parsed: {:?}", component);
 
-        let flags = RefFlags::default().with_content_hashing(true).with_permission_tracking(false);
-        RefStore::create(self, p.clone(), flags)
+        RefStore::create_ref::<UniqueContactPathGenerator, P>(self, p)
             .map_err(From::from)
             .and_then(|mut entry| {
                 entry.set_isflag::<IsContact>()
@@ -78,7 +96,7 @@ impl<'a> ContactStore<'a> for Store {
     }
 
     fn all_contacts(&'a self) -> Result<StoreIdIterator> {
-        self.all_references().map_err(From::from)
+        unimplemented!()
     }
 
 }
