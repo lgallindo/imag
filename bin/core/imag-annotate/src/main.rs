@@ -43,6 +43,7 @@ extern crate libimagrt;
 extern crate libimagstore;
 extern crate libimagutil;
 
+use std::io::Write;
 use std::path::PathBuf;
 
 use libimagentryannotation::annotateable::*;
@@ -50,6 +51,8 @@ use libimagentryannotation::annotation_fetcher::*;
 use libimagentryannotation::error::AnnotationError as AE;
 use libimagentryedit::edit::*;
 use libimagerror::trace::MapErrTrace;
+use libimagerror::exit::UnwrapExit;
+use libimagerror::io::ToExitCode;
 use libimagrt::runtime::Runtime;
 use libimagrt::setup::generate_runtime_setup;
 use libimagstore::store::FileLockEntry;
@@ -162,13 +165,16 @@ fn list(rt: &Runtime) {
 }
 
 fn list_annotation<'a>(i: usize, a: FileLockEntry<'a>, with_text: bool) {
-    if with_text {
-        println!("--- {i: >5} | {id}\n{text}\n\n",
+    let _ = if with_text {
+        writeln!(out,
+                 "--- {i: >5} | {id}\n{text}\n\n",
                  i = i,
                  id = a.get_location(),
-                 text = a.get_content());
+                 text = a.get_content())
     } else {
-        println!("{: >5} | {}", i, a.get_location());
+        writeln!(out, "{: >5} | {}", i, a.get_location())
     }
+    .to_exit_code()
+    .unwrap_or_exit();
 }
 
