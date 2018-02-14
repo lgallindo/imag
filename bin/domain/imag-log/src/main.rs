@@ -139,7 +139,7 @@ fn show(rt: &Runtime) {
                      text = e.get_content())
                 .to_exit_code()
         })
-        .collect::<Result<(), i32>>()
+        .collect::<Result<(), _>>()
         .unwrap_or_exit();
     }
 }
