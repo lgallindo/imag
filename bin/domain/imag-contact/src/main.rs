@@ -64,6 +64,7 @@ use libimagrt::setup::generate_runtime_setup;
 use libimagerror::str::ErrFromStr;
 use libimagerror::trace::MapErrTrace;
 use libimagcontact::store::ContactStore;
+use libimagcontact::store::UniqueContactPathGenerator;
 use libimagcontact::error::ContactError as CE;
 use libimagcontact::contact::Contact;
 use libimagstore::iter::get::StoreIdGetIteratorExtension;
@@ -125,7 +126,7 @@ fn list(rt: &Runtime) {
         })
         .enumerate()
         .map(|(i, (fle, vcard))| {
-            let hash = fle.get_path_hash().map_err_trace_exit_unwrap(1);
+            let hash = String::from(fle.get_hash().map_err_trace_exit_unwrap(1));
             let vcard = vcard.unwrap_or_else(|e| {
                 error!("Element is not a VCARD object: {:?}", e);
                 exit(1)
@@ -184,7 +185,7 @@ fn show(rt: &Runtime) {
     let hash = scmd.value_of("hash").map(String::from).unwrap(); // safed by clap
 
     let contact_data = rt.store()
-        .get_by_hash(hash.clone())
+        .get_ref::<UniqueContactPathGenerator, _>(hash.clone())
         .map_err_trace_exit_unwrap(1)
         .ok_or(CE::from(format!("No entry for hash {}", hash)))
         .map_err_trace_exit_unwrap(1)
